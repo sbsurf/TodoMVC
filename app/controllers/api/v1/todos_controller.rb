@@ -8,19 +8,30 @@ class Api::V1::TodosController < ApplicationController
   end
 
   def show
-    respond_with @todo, :head => :no_content
-  end
-
-  def create
-
-  end
-
-  def update
-    @todo.update_attributes(todo_params)
     respond_with @todo
   end
 
+  def create
+    todo = Todo.new
+
+    if todo.update_attributes(todo_params)
+      respond_with todo, :location => nil, status => :created
+    else
+      respond_with todo.errors, status => :unprocessable_entity
+    end
+  end
+
+  def update
+    if @todo.update_attributes(todo_params)
+      respond_with @todo, :location => nil, status: :ok
+    else
+      respond_with @contact.errors, status => :unprocessable_entity
+    end
+  end
+
   def destroy
+    @todo.destroy
+    respond_with :status => :ok
   end
 
   private
