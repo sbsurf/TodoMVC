@@ -1,3 +1,7 @@
-App.Router.map (match)->
-  # match('/').to('index')
-
+App.Router.map ->
+  @resource "todos",
+  {path: "/"},
+  ->
+    # additional child routes
+    @route "active"
+    @route "completed"
