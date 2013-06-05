@@ -20,6 +20,8 @@
 //= require_self
 //= require todo_mvc
 
-App = Ember.Application.create();
+App = Ember.Application.create({
+    LOG_TRANSITIONS: true
+});
 
 //= require_tree .
