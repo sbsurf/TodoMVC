@@ -2,15 +2,41 @@
 <html>
 <head>
   <title>Ember.js • TodoMVC</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= nav_bar :fixed => :top, :brand => "Agrian 2.0", :responsive => true do %>
+    <%= menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_divider %>
+        <%= drop_down "Products" do %>
+            <%= menu_item "Things you can't afford" %>
+            <%= menu_item "Things that won't suit you anyway" %>
+            <%= menu_item "Things you're not even cool enough to buy anyway" %>
+        <% end %>
+        <%= menu_item "About Us" %>
+        <%= menu_item "Contact" %>
+    <% end %>
+    <%= menu_group :pull => :right do %>
+        <li><input type="text" class="input-medium search-query">
+          <button type="submit" class="btn">Search</button></li>
+        <%= menu_divider %>
+        <% if 1==1 %>
+            <%= menu_item "Log Out" %>
+        <% else %>
+            <%= form_for @user, :url => session_path(:user), html => {:class=> "navbar-form pull-right"} do |f| -%>
+                <p><%= f.text_field :email %></p>
+                <p><%= f.password_field :password %></p>
+                <p><%= f.submit "Sign in" %></p>
+            <% end -%>
+        <% end %>
+    <% end %>
+<% end %>
 
 <script type="text/x-handlebars">
   {{outlet}}
 </script>
-
 </body>
 </html>
