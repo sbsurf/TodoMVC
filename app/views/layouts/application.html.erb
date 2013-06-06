@@ -7,37 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= nav_bar :fixed => :top, :brand => "Agrian 2.0", :responsive => true do %>
-    <%= menu_group do %>
-        <%= menu_item "Home", root_path %>
-        <%= menu_divider %>
-        <%= menu_item "Field" %>
-        <%= menu_item "Processor" %>
-        <%= menu_item "Label Lookup" %>
-        <%= drop_down "Company" do %>
-            <%= menu_item "About Us" %>
-            <%= menu_item "Press" %>
-            <%= menu_item "Contact" %>
-        <% end %>
-    <% end %>
-    <%= menu_group :pull => :right do %>
-        <li><input type="text" class="input-medium search-query">
-          <button type="submit" class="btn">Search</button></li>
-        <%= menu_divider %>
-        <% if 1==1 %>
-            <%= menu_item "Log Out" %>
-        <% else %>
-            <%= form_for @user, :url => session_path(:user), html => {:class=> "navbar-form pull-right"} do |f| -%>
-                <p><%= f.text_field :email %></p>
-                <p><%= f.password_field :password %></p>
-                <p><%= f.submit "Sign in" %></p>
-            <% end -%>
-        <% end %>
-    <% end %>
-<% end %>
-
 <script type="text/x-handlebars">
-  {{outlet}}
+  <%= render "navbar" %>
+
+  <div class="container">
+    <div class="row">
+      <div class="span9">
+        {{outlet}}
+      </div>
+      <div class="span3">
+        <h2>Tip of the Day:</h2>
+        Use Twitter Bootstrap to make web pages scale gracefully to any device.
+      </div>
+    </div>
+  </div>
 </script>
 </body>
 </html>
