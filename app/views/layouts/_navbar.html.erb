@@ -9,8 +9,8 @@
 
       <div class="nav-collapse">
         <ul class="nav ">
-          <li>{{#linkTo todos.index activeClass="active"}}Home{{/linkTo}}</li>
           <li class="divider-vertical"></li>
+          <li>{{#linkTo todos.index activeClass="active"}}Home{{/linkTo}}</li>
           <li><a href="#">Field</a></li>
           <li><a href="#">Processor</a></li>
           <li><a href="#">Label Lookup</a></li>
@@ -24,8 +24,9 @@
           </li>
         </ul>
         <ul class="nav pull-right">
-          <li><input type="text" class="input-medium search-query">
-            <button type="submit" class="btn">Search</button>
+          <li>
+            {{view App.SearchView placeholder="Enter search param" target="App.SearchController" action="search" class="input-medium search-query"}}
+            <button class="btn" type="button" {{ action "search" target="App.SearchController" }}>Search</button>
           </li>
           <li class="divider-vertical"></li>
           <li><a href="#">Log Out</a></li>

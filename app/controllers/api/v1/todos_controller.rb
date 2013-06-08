@@ -4,7 +4,7 @@ class Api::V1::TodosController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Todo.all
+    respond_with Todo.filter(search_params)
   end
 
   def show
@@ -43,5 +43,9 @@ class Api::V1::TodosController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def todo_params
     params.require(:todo).permit(:title, :is_completed)
+  end
+
+  def search_params
+    params.permit(:title, :is_completed)
   end
 end
